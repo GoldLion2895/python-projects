@@ -1,31 +1,23 @@
 from tkinter import *
 
-win = Tk()  # This is to create a basic window
-win.geometry("312x324")  # this is for the size of the window
-win.resizable(0, 0)  # this is to prevent from resizing the window
+win = Tk()  
+win.geometry("312x324")  
+win.resizable(0, 0)  
 win.title("Calculator")
 
-""" Functions """
+#funcs
 
-
-# 'btn_click' function :
-# This Function continuously updates the
-# input field whenever you enters a number
 def btn_click(item):
     global expression
     expression = expression + str(item)
     input_text.set(expression)
 
 
-# clear values in input field and expression on clicking C
 def btn_clear():
     global expression
     expression = ""
     input_text.set("")
 
-
-# 'bt_equal':This method calculates the expression
-# present in input field
 def btn_equal():
     global expression
     result = str(eval(expression))
@@ -35,23 +27,21 @@ def btn_equal():
 
 expression = ""
 
-# 'StringVar()' :It is used to get the instance of input field
 input_text = StringVar()
 
 """  USER INPUT FRAME  """
-# Creating a frame for the input field
 input_frame = Frame(win, width=312, height=50, bd=0, highlightbackground="black", highlightcolor="black",
                     highlightthickness=2)
 input_frame.pack(side=TOP)
 
-# creating an input field inside the 'Frame' for reading the user input
+
 input_field = Entry(input_frame, font=('arial', 20, 'bold'), textvariable=input_text, width=50, bg="#FFFFFF", bd=0,
                     justify=RIGHT)
 input_field.grid(row=0, column=0)
-input_field.pack(ipady=10)  # 'ipady' is internal padding to increase the height of input field
+input_field.pack(ipady=10) 
 
 """  BUTTONS FRAME  """
-# Let us creating another 'Frame' for the button below the 'input_frame'
+
 btns_frame = Frame(win, width=312, height=272.5, bg="grey")
 btns_frame.pack()
 
@@ -115,7 +105,7 @@ plus = Button(btns_frame, text="+", fg="black", width=10, height=3, bd=0, bg="#e
               command=lambda: btn_click("+"))
 plus.grid(row=3, column=3, padx=1, pady=1)
 
-# Fourth Row
+# Fourth & Final Row
 zero = Button(btns_frame, text="0", fg="black", width=10, height=3, bd=0, bg="#eee", cursor="hand2",
               command=lambda: btn_click("0"))
 zero.grid(row=4, column=0, padx=1, pady=1)
